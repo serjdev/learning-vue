@@ -1,0 +1,223 @@
+[
+  {
+    "id": 1,
+    "name": "La Casa di Mestre",
+    "imageSrc": "https://plus.unsplash.com/premium_photo-1661953124283-76d0a8436b87?q=80&w=2976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "rating": 3,
+    "menuHighlights": [
+      {
+        "name": "Risotto alla Mestrina",
+        "description": "A creamy risotto with saffron and Parmigiano.",
+        "price": 12
+      },
+      {
+        "name": "Pollo alla Griglia",
+        "description": "Grilled chicken with rosemary and olive oil.",
+        "price": 10
+      }
+    ],
+    "address": "Via Castellana 15",
+    "tel": "+39342314325123",
+    "hours": {
+      "Monday": "12.00 - 22.00",
+      "Tuesday": "Closed",
+      "Wednesday": "12.00 - 22.00",
+      "Thursday": "12.00 - 22.00",
+      "Friday": "12.00 - 23.00",
+      "Saturday": "12.00 - 23.00",
+      "Sunday": "12.00 - 21.00"
+    },
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Mario Rossi",
+        "content": "Great risotto and cozy atmosphere!",
+        "rating": 5
+      },
+      {
+        "name": "Lucia Bianchi",
+        "content": "Loved the grilled chicken.",
+        "rating": 4,
+        "id": 2
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Palazzo della Pizza",
+    "imageSrc": "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=2874&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "rating": 5,
+    "menuHighlights": [
+      {
+        "name": "Pizza Margherita",
+        "description": "Classic Margherita with fresh basil and mozzarella.",
+        "price": 8
+      },
+      {
+        "name": "Pizza Quattro Formaggi",
+        "description": "Four-cheese pizza with a creamy, tangy mix.",
+        "price": 10
+      }
+    ],
+    "address": "Via Garibaldi 22",
+    "tel": "+39342314325111",
+    "hours": {
+      "Monday": "12.00 - 21.00",
+      "Tuesday": "12.00 - 21.00",
+      "Wednesday": "Closed",
+      "Thursday": "12.00 - 21.00",
+      "Friday": "12.00 - 23.00",
+      "Saturday": "12.00 - 23.00",
+      "Sunday": "12.00 - 21.00"
+    },
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Franco Verdi",
+        "content": "Best pizza in town!",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "name": "Anna L.",
+        "content": "Tasty pizza, but a bit crowded.",
+        "rating": 4
+      },
+      {
+        "name": "Ion",
+        "content": "Un review pentru test",
+        "rating": 5,
+        "id": 3
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Sushi Firenze",
+    "imageSrc": "https://images.unsplash.com/photo-1481833761820-0509d3217039?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "rating": 4,
+    "menuHighlights": [
+      {
+        "name": "Nigiri Misto",
+        "description": "A selection of fresh tuna, salmon, and shrimp nigiri.",
+        "price": 15
+      },
+      {
+        "name": "Sashimi Deluxe",
+        "description": "Delicate cuts of tuna, salmon, and yellowtail.",
+        "price": 18
+      }
+    ],
+    "address": "Piazza della Signoria 8",
+    "tel": "+39342314325122",
+    "hours": {
+      "Monday": "11.00 - 22.00",
+      "Tuesday": "11.00 - 22.00",
+      "Wednesday": "Closed",
+      "Thursday": "11.00 - 22.00",
+      "Friday": "11.00 - 23.00",
+      "Saturday": "11.00 - 23.00",
+      "Sunday": "11.00 - 22.00"
+    },
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Yuki Sato",
+        "content": "Authentic sushi, feels like Japan!",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "name": "Marco P.",
+        "content": "Excellent fish quality.",
+        "rating": 4
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Bisteccheria Toscana",
+    "imageSrc": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "rating": 5,
+    "menuHighlights": [
+      {
+        "name": "Bistecca alla Fiorentina",
+        "description": "Grilled T-bone steak, Tuscan-style.",
+        "price": 25
+      },
+      {
+        "name": "Patate al Forno",
+        "description": "Roasted potatoes with rosemary and olive oil.",
+        "price": 6
+      }
+    ],
+    "address": "Via Roma 34",
+    "tel": "+39342314325133",
+    "hours": {
+      "Monday": "12.00 - 22.00",
+      "Tuesday": "Closed",
+      "Wednesday": "12.00 - 22.00",
+      "Thursday": "12.00 - 22.00",
+      "Friday": "12.00 - 23.00",
+      "Saturday": "12.00 - 23.00",
+      "Sunday": "12.00 - 21.00"
+    },
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Giovanni R.",
+        "content": "Perfectly cooked bistecca!",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "name": "Sara L.",
+        "content": "A bit pricey, but worth it.",
+        "rating": 4
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Trattoria al Dente",
+    "imageSrc": "https://plus.unsplash.com/premium_photo-1661883237884-263e8de8869b?q=80&w=2978&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "rating": 4,
+    "menuHighlights": [
+      {
+        "name": "Spaghetti alla Carbonara",
+        "description": "Classic Roman carbonara with pancetta and pecorino.",
+        "price": 9
+      },
+      {
+        "name": "Tagliatelle al Tartufo",
+        "description": "Pasta with truffle cream sauce.",
+        "price": 13
+      }
+    ],
+    "address": "Via della Pasta 3",
+    "tel": "+39342314325144",
+    "hours": {
+      "Monday": "11.00 - 21.00",
+      "Tuesday": "11.00 - 21.00",
+      "Wednesday": "Closed",
+      "Thursday": "11.00 - 21.00",
+      "Friday": "11.00 - 22.00",
+      "Saturday": "11.00 - 22.00",
+      "Sunday": "11.00 - 21.00"
+    },
+    "reviews": [
+      {
+        "id": 1,
+        "name": "Claudia M.",
+        "content": "The best carbonara I’ve had!",
+        "rating": 5
+      },
+      {
+        "id": 2,
+        "name": "Pietro B.",
+        "content": "Great pasta, will visit again.",
+        "rating": 4
+      }
+    ]
+  }
+]
