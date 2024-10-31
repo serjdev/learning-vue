@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import type { Restaurant } from "~/types/restaurtant";
 import Stars from "~/components/stars.vue";
+import type Button from "~/components/button.vue";
+
+const router = useRouter();
 
 const minRating = ref<string | null>("");
 const restaurants = ref<Restaurant[]>([]);
@@ -45,19 +48,6 @@ fetchRestaurants();
             <option value="4">4 stars</option>
             <option value="5">5 stars</option>
           </select>
-          <div
-            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-          >
-            <svg
-              class="fill-current h-4 w-4"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-              />
-            </svg>
-          </div>
         </label>
       </div>
 
@@ -82,12 +72,9 @@ fetchRestaurants();
             <div class="flex items-center mb-4">
               <Stars :rating="restaurant.rating" />
             </div>
-            <NuxtLink
-              :to="`/restaurants/${restaurant.id}`"
-              class="block w-full bg-indigo-600 text-white text-center py-2 px-4 rounded-md hover:bg-indigo-700 transition duration-300 ease-in-out"
-            >
+            <Button @click="() => router.push(`/restaurants/${restaurant.id}`)">
               View Restaurant
-            </NuxtLink>
+            </Button>
           </div>
         </li>
       </ul>

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Button from "~/components/button.vue";
 const { onSuccessSubmit, restaurantId } = defineProps<{
   onSuccessSubmit: () => Promise<void>;
   restaurantId: number;
@@ -43,12 +44,7 @@ const submitReview = async () => {
 </script>
 
 <template>
-  <button
-    @click="openModal"
-    class="mb-4 bg-indigo-600 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded"
-  >
-    Write your Review
-  </button>
+  <Button @click="openModal" class="w-fit my-6"> Write your Review </Button>
   <Teleport to="body">
     <div
       v-if="isModalOpen"
@@ -133,12 +129,7 @@ const submitReview = async () => {
                   </select>
                 </div>
                 <div class="mt-5 sm:mt-6">
-                  <button
-                    type="submit"
-                    class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 sm:text-sm"
-                  >
-                    Submit Review
-                  </button>
+                  <Button type="submit"> Submit Review</Button>
                 </div>
               </form>
             </div>
