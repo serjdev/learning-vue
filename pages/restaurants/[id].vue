@@ -12,10 +12,7 @@ const restaurantId = route.params.id;
 
 const fetchRestaurant = async () => {
   const { data } = await useFetch<{ restaurant: Restaurant }>(
-    "/api/restaurants",
-    {
-      params: { id: restaurantId.toString() },
-    }
+    `/api/restaurants/${restaurantId.toString()}`
   );
   restaurant.value = data.value?.restaurant ?? null;
 };

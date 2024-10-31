@@ -65,14 +65,16 @@ const submitReview = async () => {
     return;
   }
 
-  const { data } = await useFetch(`/api/restaurants`, {
-    params: { id: restaurantId.toString() },
-    method: "POST",
-    body: {
-      ...reviewForm,
-      rating: parseFloat(reviewForm.rating),
-    },
-  });
+  const { data } = await useFetch(
+    `/api/restaurants/${restaurantId.toString()}`,
+    {
+      method: "PUT",
+      body: {
+        ...reviewForm,
+        rating: parseFloat(reviewForm.rating),
+      },
+    }
+  );
 
   if (data) {
     // Reset form fields
