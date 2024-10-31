@@ -1,5 +1,9 @@
 import { defineEventHandler, getQuery } from "h3";
-import { Restaurant, RestaurantReview } from "~/types/restaurtant";
+import {
+  Restaurant,
+  restaurantsSchema,
+  reviewSchema,
+} from "~/types/restaurtant";
 import fs from "fs";
 import path from "path";
 
@@ -7,7 +11,7 @@ const dataFilePath = path.resolve(process.cwd(), "data/restaurants.json");
 
 const readRestaurants = () => {
   const data = fs.readFileSync(dataFilePath, "utf8");
-  return JSON.parse(data) as Array<Restaurant>; // Todo parse with zod for better typings
+  return restaurantsSchema.parse(JSON.parse(data));
 };
 
 const writeRestaurants = (restaurants: Array<Restaurant>) => {
@@ -42,7 +46,9 @@ export default defineEventHandler(async (event) => {
       });
     }
 
-    const newReview: RestaurantReview = await readBody(event);
+    const newReviewBody = await readBody(event);
+
+    const newReview = reviewSchema.parse(newReviewBody);
 
     if (
       !newReview.name ||
@@ -61,8 +67,11 @@ export default defineEventHandler(async (event) => {
         ].id + 1
       : 1;
 
-    newReview.id = nextReviewId;
-    restaurants[restaurantIndex].reviews.push(newReview);
+    const newReviewWithId = {
+      ...newReview,
+      id: nextReviewId,
+    };
+    restaurants[restaurantIndex].reviews.push(newReviewWithId);
 
     // After we've added a new review we need to calculate the new average rating
     const totalRating = restaurants[restaurantIndex].reviews.reduce(

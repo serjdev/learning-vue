@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import { z } from "zod";
 import Button from "~/components/button.vue";
+import { reviewSchema } from "~/types/restaurtant";
 const { onSuccessSubmit, restaurantId } = defineProps<{
   onSuccessSubmit: () => Promise<void>;
   restaurantId: number;
 }>();
 
-const reviewSchema = z.object({
-  name: z.string().min(1, "Name is required."),
-  content: z
-    .string()
-    .min(10, "Review content should be minimut 10 character lenght"),
-  rating: z.string().min(1, "Rating is required."),
-});
-
-type TReviewSchema = z.infer<typeof reviewSchema>;
-
-const reviewForm: TReviewSchema = reactive({
+const reviewForm = reactive({
   name: "",
   content: "",
   rating: "",
@@ -30,12 +20,15 @@ const errors: { [key: string]: string } = reactive({
 
 const clearErros = () => {
   Object.keys(errors).forEach((key) => {
-    errors[key] = ""; // Clear each error message
+    errors[key] = "";
   });
 };
 
 const validateForm = () => {
-  const result = reviewSchema.safeParse(reviewForm);
+  const result = reviewSchema.safeParse({
+    ...reviewForm,
+    rating: parseInt(reviewForm.rating),
+  });
 
   clearErros();
 
