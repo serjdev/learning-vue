@@ -88,6 +88,12 @@
         "content": "Un review pentru test",
         "rating": 5,
         "id": 3
+      },
+      {
+        "name": "John",
+        "content": "very good review",
+        "rating": 4,
+        "id": 4
       }
     ]
   },

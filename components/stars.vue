@@ -7,5 +7,5 @@
 <script setup lang="ts">
 import Star from "./star.vue";
 
-const props = defineProps<{ rating: number }>();
+defineProps<{ rating: number }>();
 </script>
