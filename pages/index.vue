@@ -1,26 +1,22 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { Restaurant } from "~/types/restaurtant";
 import Stars from "~/components/stars.vue";
 
 const router = useRouter();
 
-const minRating = ref<string | null>("");
-const restaurants = ref<Restaurant[]>([]);
+const minRating = ref("");
 
-const fetchRestaurants = async () => {
-  const { data } = await useFetch<{ restaurants: Restaurant[] }>(
-    "/api/restaurants",
-    {
+const { data: restaurants } = await useAsyncData(
+  "restaurants",
+  () =>
+    $fetch("/api/restaurants", {
       params: { minRating: minRating.value },
-    }
-  );
-  restaurants.value = data.value?.restaurants ?? [];
-};
-
-fetchRestaurants();
+    }),
+  {
+    watch: [minRating],
+  }
+);
 </script>
-
 <template>
   <div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
@@ -37,7 +33,6 @@ fetchRestaurants();
           </span>
           <select
             v-model="minRating"
-            @change="fetchRestaurants"
             class="appearance-none bg-transparent py-2 pl-4 pr-8 rounded-r-md focus:outline-none focus:ring-2 focus:ring-indigo-600"
           >
             <option value="">Select Rating</option>
@@ -53,7 +48,7 @@ fetchRestaurants();
         class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
       >
         <li
-          v-for="restaurant in restaurants"
+          v-for="restaurant in restaurants.restaurants"
           :key="restaurant.id"
           class="bg-white rounded-lg shadow-md overflow-hidden transition duration-300 ease-in-out transform hover:scale-105"
         >

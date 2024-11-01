@@ -1,19 +1,10 @@
 <script setup lang="ts">
-import { TrashIcon } from "lucide-vue-next";
-import { ref } from "vue";
 import AddRestaurant from "~/components/add-restaurant.vue";
 import type { Restaurant } from "~/types/restaurtant";
 
-const restaurants = ref<Restaurant[]>([]);
-
-const fetchRestaurants = async () => {
-  const { data } = await useFetch<{ restaurants: Restaurant[] }>(
-    "/api/restaurants"
-  );
-  restaurants.value = data.value?.restaurants ?? [];
-};
-
-fetchRestaurants();
+const { data: restaurants } = await useFetch<{ restaurants: Restaurant[] }>(
+  "/api/restaurants"
+);
 </script>
 
 <template>
@@ -23,7 +14,7 @@ fetchRestaurants();
         class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center"
       >
         <h1 class="text-3xl font-bold text-gray-900">Restaurants Admin</h1>
-        <AddRestaurant v-on:success-submit="fetchRestaurants" />
+        <AddRestaurant />
       </div>
     </header>
 
@@ -31,7 +22,7 @@ fetchRestaurants();
       <div class="px-4 py-6 sm:px-0">
         <div class="space-y-4">
           <div
-            v-for="restaurant in restaurants"
+            v-for="restaurant in restaurants?.restaurants"
             :key="restaurant.id"
             class="bg-white overflow-hidden shadow rounded-lg"
           >
@@ -45,18 +36,13 @@ fetchRestaurants();
                 </div>
               </div>
               <div class="flex space-x-3">
-                <button
-                  class="text-red-600 hover:text-red-800 transition duration-300 ease-in-out"
-                  @click="fetchRestaurants"
-                >
-                  <TrashIcon class="h-5 w-5" />
-                </button>
+                <DeleteRestaurant :restaurant-id="restaurant.id.toString()" />
               </div>
             </div>
           </div>
 
           <div
-            v-if="restaurants.length === 0"
+            v-if="restaurants?.restaurants.length === 0"
             class="text-center py-12 bg-white shadow rounded-lg"
           >
             <h3 class="mt-2 text-sm font-medium text-gray-900">
@@ -66,7 +52,7 @@ fetchRestaurants();
               Get started by creating a new restaurant.
             </p>
             <div class="mt-6">
-              <AddRestaurant v-on:success-submit="fetchRestaurants" />
+              <AddRestaurant />
             </div>
           </div>
         </div>

@@ -65,30 +65,29 @@ const submitReview = async () => {
     return;
   }
 
-  const { data } = await useFetch(
-    `/api/restaurants/${restaurantId.toString()}`,
-    {
+  try {
+    const res = await $fetch(`/api/restaurants/${restaurantId.toString()}`, {
       method: "PUT",
       body: {
         ...reviewForm,
         rating: parseFloat(reviewForm.rating),
       },
+    });
+
+    if (res) {
+      // Reset form fields
+      reviewForm.name = "";
+      reviewForm.content = "";
+      reviewForm.rating = "";
+
+      // refetch restaurant data
+      await onSuccessSubmit();
+      isSubmitting.value = false;
+      closeModal();
     }
-  );
-
-  if (data) {
-    // Reset form fields
-    reviewForm.name = "";
-    reviewForm.content = "";
-    reviewForm.rating = "";
-
-    // refetch restaurant data
-    await onSuccessSubmit();
-    isSubmitting.value = false;
-    closeModal();
+  } catch (error) {
+    // Todo handle error
   }
-
-  // Todo handle error
 };
 </script>
 

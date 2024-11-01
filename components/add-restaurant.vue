@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import Button from "~/components/button.vue";
 import { basicRestaurantSchema } from "~/types/restaurtant";
-const { onSuccessSubmit } = defineProps<{
-  onSuccessSubmit: () => Promise<void>;
-}>();
 
 const formData = reactive({
   name: "",
@@ -65,7 +62,7 @@ const addRestaurant = async () => {
     return;
   }
 
-  const { data } = await useFetch(`/api/restaurants/`, {
+  const data = await $fetch(`/api/restaurants/`, {
     method: "POST",
     body: {
       ...formData,
@@ -80,7 +77,7 @@ const addRestaurant = async () => {
     formData.imageSrc = "";
 
     // refetch restaurant data
-    await onSuccessSubmit();
+    await refreshNuxtData(["/api/restaurants"]);
     isSubmitting.value = false;
     closeModal();
   }

@@ -1,23 +1,16 @@
 <script setup lang="ts">
-import { ref } from "vue";
 import { useRoute } from "vue-router";
 import type { Restaurant } from "~/types/restaurtant";
 import Stars from "~/components/stars.vue";
 import AddReview from "~/components/add-review.vue";
 
-const restaurant = ref<Restaurant | null>(null);
-
 const route = useRoute();
 const restaurantId = route.params.id;
 
-const fetchRestaurant = async () => {
-  const { data } = await useFetch<{ restaurant: Restaurant }>(
-    `/api/restaurants/${restaurantId.toString()}`
-  );
-  restaurant.value = data.value?.restaurant ?? null;
-};
-
-fetchRestaurant();
+const { data, refresh } = await useFetch<{ restaurant: Restaurant }>(
+  `/api/restaurants/${restaurantId.toString()}`
+);
+const restaurant = data.value?.restaurant ?? null;
 </script>
 
 <template>
@@ -124,7 +117,7 @@ fetchRestaurant();
           <h2 class="text-2xl font-semibold text-gray-900 mb-4">Reviews</h2>
           <AddReview
             :restaurant-id="restaurant.id"
-            v-on:success-submit="fetchRestaurant"
+            v-on:success-submit="refresh"
           />
           <div class="space-y-4">
             <div
