@@ -22,7 +22,6 @@
               :to="'/admin'"
               class="flex items-center text-white hover:text-indigo-200 transition duration-300 ease-in-out"
             >
-              <ClipboardListIcon class="h-6 w-6 mr-2" />
               <span class="text-lg font-medium">Admin</span>
             </NuxtLink>
           </div>

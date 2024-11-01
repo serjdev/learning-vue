@@ -9,13 +9,13 @@ const formData = reactive({
   name: "",
   address: "",
   tel: "",
-  imgSrc: "",
+  imageSrc: "",
 });
 
 const errors: { [key: string]: string } = reactive({
   name: "",
   address: "",
-  imgSrc: "",
+  imageSrc: "",
   tel: "",
 });
 
@@ -28,8 +28,6 @@ const clearErros = () => {
 const validateForm = () => {
   const result = basicRestaurantSchema.safeParse(formData);
 
-  console.log({ result });
-
   clearErros();
 
   if (!result.success) {
@@ -37,7 +35,7 @@ const validateForm = () => {
       if (err.path.includes("name")) errors.name = err.message;
       if (err.path.includes("address")) errors.address = err.message;
       if (err.path.includes("tel")) errors.tel = err.message;
-      if (err.path.includes("imgSrc")) errors.imgSrc = err.message;
+      if (err.path.includes("imageSrc")) errors.imgSrc = err.message;
     });
     return false;
   }
@@ -59,6 +57,7 @@ const closeModal = () => {
 
 const addRestaurant = async () => {
   isSubmitting.value = true;
+
   const isFormValid = validateForm();
 
   if (!isFormValid) {
@@ -68,7 +67,9 @@ const addRestaurant = async () => {
 
   const { data } = await useFetch(`/api/restaurants/`, {
     method: "POST",
-    body: formData,
+    body: {
+      ...formData,
+    },
   });
 
   if (data) {
@@ -76,7 +77,7 @@ const addRestaurant = async () => {
     formData.name = "";
     formData.address = "";
     formData.tel = "";
-    formData.imgSrc = "";
+    formData.imageSrc = "";
 
     // refetch restaurant data
     await onSuccessSubmit();
@@ -144,14 +145,14 @@ const addRestaurant = async () => {
                 </div>
                 <div class="space-y-2">
                   <label
-                    for="content"
+                    for="address"
                     class="block text-sm font-medium text-gray-700"
                     >Address</label
                   >
                   <input
                     :disabled="isSubmitting"
                     type="text"
-                    id="name"
+                    id="address"
                     v-model="formData.address"
                     class="w-full px-3 py-2 border border-indigo-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
@@ -159,14 +160,14 @@ const addRestaurant = async () => {
                 </div>
                 <div class="space-y-2">
                   <label
-                    for="rating"
+                    for="tel"
                     class="block text-sm font-medium text-gray-700"
                     >Tel</label
                   >
                   <input
                     :disabled="isSubmitting"
                     type="text"
-                    id="name"
+                    id="tel"
                     v-model="formData.tel"
                     class="w-full px-3 py-2 border border-indigo-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
@@ -174,15 +175,15 @@ const addRestaurant = async () => {
                 </div>
                 <div class="space-y-2">
                   <label
-                    for="rating"
+                    for="imageSrc"
                     class="block text-sm font-medium text-gray-700"
                     >Image source</label
                   >
                   <input
                     :disabled="isSubmitting"
                     type="text"
-                    id="name"
-                    v-model="formData.imgSrc"
+                    id="imageSrc"
+                    v-model="formData.imageSrc"
                     class="w-full px-3 py-2 border border-indigo-600 rounded-md placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
                   />
                   <p class="text-red-600 text-sm">{{ errors.imgSrc }}</p>

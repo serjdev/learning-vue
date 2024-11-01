@@ -17,10 +17,10 @@ const reviewSchemaWithId = reviewSchema.extend({
 export type Review = z.infer<typeof reviewSchemaWithId>;
 
 export const basicRestaurantSchema = z.object({
-  name: z.string(),
-  imageSrc: z.string(),
-  address: z.string(),
-  tel: z.string(),
+  name: z.string().min(1, { message: "Restaurant name is required" }),
+  imageSrc: z.string().min(1, { message: "Restaurant Image is required" }),
+  address: z.string().min(1, { message: "Restaurant address is required" }),
+  tel: z.string().min(1, { message: "Phone number is required" }),
 });
 
 export const restaurantSchema = basicRestaurantSchema.extend({

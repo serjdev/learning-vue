@@ -1,6 +1,6 @@
 import { defineEventHandler } from "h3";
 import { basicRestaurantSchema, restaurantSchema } from "~/types/restaurtant";
-import { readRestaurants } from "~/utils/api-utils";
+import { readRestaurants, writeRestaurants } from "~/utils/api-utils";
 
 export default defineEventHandler(async (event) => {
   const newBasicInfoBody = await readBody(event);
@@ -41,6 +41,8 @@ export default defineEventHandler(async (event) => {
   const newRestaurant = restaurantSchema.parse(newRestaurantData);
 
   restaurants.push(newRestaurant);
+
+  writeRestaurants(restaurants);
 
   return {
     message: "Restaurant added successfully",

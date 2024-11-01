@@ -20,7 +20,7 @@ fetchRestaurants();
   <div class="min-h-screen bg-gray-100">
     <header class="bg-white shadow">
       <div
-        class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center"
+        class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center"
       >
         <h1 class="text-3xl font-bold text-gray-900">Restaurants Admin</h1>
         <AddRestaurant v-on:success-submit="fetchRestaurants" />
@@ -59,7 +59,6 @@ fetchRestaurants();
             v-if="restaurants.length === 0"
             class="text-center py-12 bg-white shadow rounded-lg"
           >
-            <UtensilsIcon class="mx-auto h-12 w-12 text-gray-400" />
             <h3 class="mt-2 text-sm font-medium text-gray-900">
               No restaurants
             </h3>
