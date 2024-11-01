@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import type { Restaurant } from "~/types/restaurtant";
 import Stars from "~/components/stars.vue";
-import type Button from "~/components/button.vue";
 
 const router = useRouter();
 
@@ -19,8 +18,6 @@ const fetchRestaurants = async () => {
   restaurants.value = data.value?.restaurants ?? [];
 };
 
-// if we need only on the client we can use onMounted, but not our case
-// https://vuejs.org/api/composition-api-lifecycle
 fetchRestaurants();
 </script>
 

@@ -16,13 +16,16 @@ const reviewSchemaWithId = reviewSchema.extend({
 
 export type Review = z.infer<typeof reviewSchemaWithId>;
 
-export const restaurantSchema = z.object({
-  id: z.number(),
+export const basicRestaurantSchema = z.object({
   name: z.string(),
   imageSrc: z.string(),
-  rating: z.number(),
   address: z.string(),
   tel: z.string(),
+});
+
+export const restaurantSchema = basicRestaurantSchema.extend({
+  id: z.number(),
+  rating: z.number(),
   hours: z.object({
     Monday: z.string(),
     Tuesday: z.string(),
