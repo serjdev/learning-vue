@@ -1,4 +1,7 @@
 <script setup lang="ts">
+const { onSuccessSubmit } = defineProps<{
+  onSuccessSubmit: () => Promise<void>;
+}>();
 import Button from "~/components/button.vue";
 import { basicRestaurantSchema } from "~/types/restaurtant";
 
@@ -77,7 +80,7 @@ const addRestaurant = async () => {
     formData.imageSrc = "";
 
     // refetch restaurant data
-    await refreshNuxtData(["/api/restaurants"]);
+    await onSuccessSubmit();
     isSubmitting.value = false;
     closeModal();
   }

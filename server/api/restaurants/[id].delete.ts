@@ -4,8 +4,6 @@ import { readRestaurants, writeRestaurants } from "~/utils/api-utils";
 export default defineEventHandler(async (event) => {
   const restaurantId = parseInt(event.context.params?.id as string);
 
-  console.log({ restaurantId });
-
   if (isNaN(restaurantId)) {
     throw createError({
       statusCode: 404,

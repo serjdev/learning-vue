@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { TrashIcon } from "lucide-vue-next";
-const { restaurantId } = defineProps<{
+const { onSuccessSubmit, restaurantId } = defineProps<{
+  onSuccessSubmit: () => Promise<void>;
   restaurantId: string;
 }>();
+import { TrashIcon } from "lucide-vue-next";
 
 const isModalOpen = ref(false);
 const isSubmitting = ref(false);
@@ -23,7 +24,8 @@ const deleteRestaurant = async (id: string) => {
       method: "DELETE",
     });
     if (res) {
-      await refreshNuxtData(["/api/restaurants/"]);
+      await onSuccessSubmit();
+
       closeModal();
     }
   } catch (error) {

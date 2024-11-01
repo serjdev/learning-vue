@@ -2,9 +2,9 @@
 import AddRestaurant from "~/components/add-restaurant.vue";
 import type { Restaurant } from "~/types/restaurtant";
 
-const { data: restaurants } = await useFetch<{ restaurants: Restaurant[] }>(
-  "/api/restaurants"
-);
+const { data: restaurants, refresh } = await useFetch<{
+  restaurants: Restaurant[];
+}>("/api/restaurants");
 </script>
 
 <template>
@@ -14,7 +14,7 @@ const { data: restaurants } = await useFetch<{ restaurants: Restaurant[] }>(
         class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center"
       >
         <h1 class="text-3xl font-bold text-gray-900">Restaurants Admin</h1>
-        <AddRestaurant />
+        <AddRestaurant v-on:success-submit="refresh" />
       </div>
     </header>
 
@@ -36,7 +36,10 @@ const { data: restaurants } = await useFetch<{ restaurants: Restaurant[] }>(
                 </div>
               </div>
               <div class="flex space-x-3">
-                <DeleteRestaurant :restaurant-id="restaurant.id.toString()" />
+                <DeleteRestaurant
+                  :restaurant-id="restaurant.id.toString()"
+                  v-on:success-submit="refresh"
+                />
               </div>
             </div>
           </div>
@@ -52,7 +55,7 @@ const { data: restaurants } = await useFetch<{ restaurants: Restaurant[] }>(
               Get started by creating a new restaurant.
             </p>
             <div class="mt-6">
-              <AddRestaurant />
+              <AddRestaurant v-on:success-submit="refresh" />
             </div>
           </div>
         </div>

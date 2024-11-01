@@ -7,10 +7,9 @@ import AddReview from "~/components/add-review.vue";
 const route = useRoute();
 const restaurantId = route.params.id;
 
-const { data, refresh } = await useFetch<{ restaurant: Restaurant }>(
+const { data: restaurant, refresh } = await useFetch<Restaurant>(
   `/api/restaurants/${restaurantId.toString()}`
 );
-const restaurant = data.value?.restaurant ?? null;
 </script>
 
 <template>

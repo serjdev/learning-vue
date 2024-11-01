@@ -21,5 +21,5 @@ export default defineEventHandler(async (event) => {
     });
   }
 
-  return { restaurant };
+  return restaurant;
 });
